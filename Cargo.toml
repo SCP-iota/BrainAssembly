@@ -1,0 +1,8 @@
+[package]
+name = "brainassembly"
+version = "0.1.0"
+edition = "2021"
+description = "Fast optimizing compiler from BrainF*** to x86_64 assembly"
+
+[dependencies]
+clap = { version = "4.5.13", features = ["derive"] }
