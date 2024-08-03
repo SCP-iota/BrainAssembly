@@ -2,7 +2,7 @@ mod brainfuck;
 
 use std::{fmt::{Display, Formatter}, path::PathBuf};
 use clap::Parser;
-use brainfuck::BrainfuckCode;
+use brainfuck::{codegen_assembly, codegen_c, AssemblyStyle, BrainfuckCode};
 
 #[derive(Parser)]
 #[command(version, about)]
@@ -52,6 +52,8 @@ fn main() {
 fn run(cli: BrainAssemblyCli) -> Result<(), BrainAssemblyError> {
     let source = std::fs::read_to_string(cli.source_file)?.trim().to_string();
     let code = BrainfuckCode::new_from_code(source.as_str())?.optimize_better();
-    println!("{}", code);
+    // println!("{}", codegen_assembly(code, AssemblyStyle::NASM));
+
+    println!("{}", codegen_assembly(code, AssemblyStyle::NASM));
     Ok(())
 }
